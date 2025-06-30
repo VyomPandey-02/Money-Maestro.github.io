@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Wallet</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Budget Setting Slide -->
+    <div class="slide" id="budget-slide">
+        <div class="container">
+            <h2>Set Your Monthly Budget</h2>
+            <input type="number" id="budget" placeholder="Enter budget">
+            <select id="currency">
+                <option value="₹">INR (₹)</option>
+                <option value="$">USD ($)</option>
+                <option value="€">EUR (€)</option>
+                <option value="£">GBP (£)</option>
+            </select>
+            <button class="set-budget-btn" onclick="setBudgetAndProceed()">
+                <i class="fas fa-check-circle"></i> Set Budget and Continue
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Wallet Slide -->
+    <div class="slide hidden" id="wallet-slide">
+        <div class="container">
+            <h1>Digital Wallet</h1>
+            <div class="balance-section">
+                <h2>Current Balance: <span id="currency-symbol">₹</span><span id="balance">0.00</span></h2>
+                <p id="budget-alert" class="hidden">ALERT!! Budget Exceeded</p>
+            </div>
+
+            <!-- Transaction Form -->
+            <div class="transaction-form">
+                <input type="number" id="amount" placeholder="Enter amount">
+                <select id="icon-selection">
+                    <option value="💵">Allowance</option>
+                    <option value="💰">Paycheck</option>
+                    <option value="🍔">Food</option>
+                    <option value="🚗">Transport</option>
+                    <option value="📺">Subscription</option>
+                    <option value="💡">Utilities</option>
+                    <option value="🛒">Groceries</option>
+                </select>
+                <input type="datetime-local" id="transaction-time">
+                <button class="cash-in-btn" onclick="cashIn()">
+                    <i class="fas fa-wallet"></i> Cash In
+                </button>
+                <button class="cash-out-btn" onclick="cashOut()">
+                    <i class="fas fa-money-bill-wave"></i> Cash Out
+                </button>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="history-section">
+                <h2>Transaction History</h2>
+                <select id="filter" onchange="showTransactions()">
+                    <option value="all">All</option>
+                    <option value="currentMonth">Current Month</option>
+                    <option value="lastMonth">Last Month</option>
+                    <option value="oneYear">Last Year</option>
+                </select>
+                <ul id="transaction-history"></ul>
+            </div>
+
+            <div class="arrow-section">
+                <i class="fas fa-arrow-right" onclick="goToGraphSlide()"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Graph Slide -->
+    <div class="slide hidden" id="graph-slide">
+        <div class="container">
+            <h2>Expenditure Graph</h2>
+            <canvas id="expenseChart" width="400" height="200"></canvas>
+            <button class="update-graph-btn" onclick="updateGraph()">Update Graph</button>
+            <div class="arrow-section">
+                <i class="fas fa-arrow-left" onclick="goToWalletSlide()"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
